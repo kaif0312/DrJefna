@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Dr. Jefna Sagir - Orthodontist Kuwait. Private clinic coming soon.">
+  <title>Dr. Jefna Sagir | Orthodontist Kuwait - Coming Soon</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #faf8f5;
+      --sand: #e8e2da;
+      --teal: #2d6a6a;
+      --teal-light: #4a8b8b;
+      --charcoal: #2c2c2c;
+      --gold: #b8860b;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Outfit', sans-serif;
+      background: var(--cream);
+      color: var(--charcoal);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    .bg-pattern {
+      position: fixed;
+      inset: 0;
+      background-image: 
+        radial-gradient(circle at 20% 80%, rgba(45, 106, 106, 0.03) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(184, 134, 11, 0.04) 0%, transparent 50%),
+        repeating-linear-gradient(
+          45deg,
+          transparent,
+          transparent 40px,
+          rgba(45, 106, 106, 0.02) 40px,
+          rgba(45, 106, 106, 0.02) 80px
+        );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    main {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+      text-align: center;
+    }
+
+    .badge {
+      font-size: 0.75rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+      opacity: 0.9;
+    }
+
+    h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-weight: 400;
+      color: var(--charcoal);
+      line-height: 1.15;
+      margin-bottom: 0.5rem;
+    }
+
+    h1 span {
+      font-style: italic;
+      color: var(--teal);
+    }
+
+    .subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 400;
+      color: var(--teal);
+      margin-bottom: 2rem;
+    }
+
+    .coming-soon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1.75rem;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+      color: white;
+      font-size: 0.9rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      font-weight: 500;
+      border-radius: 4px;
+      margin-bottom: 3rem;
+      box-shadow: 0 4px 24px rgba(45, 106, 106, 0.25);
+    }
+
+    .coming-soon::before,
+    .coming-soon::after {
+      content: '';
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50%;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    .coming-soon::after {
+      animation-delay: 1s;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(0.8); }
+    }
+
+    .tagline {
+      font-size: 1rem;
+      font-weight: 300;
+      color: var(--charcoal);
+      max-width: 400px;
+      line-height: 1.7;
+      opacity: 0.85;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.8rem;
+      color: var(--charcoal);
+      opacity: 0.6;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-pattern"></div>
+  <main>
+    <p class="badge">Private Clinic</p>
+    <h1>Dr. <span>Jefna Sagir</span></h1>
+    <p class="subtitle">Orthodontist — Kuwait</p>
+    <div class="coming-soon">Coming Soon</div>
+    <p class="tagline">We're preparing something special. Our new practice will be opening soon to serve you with dedicated orthodontic care.</p>
+    <p class="footer">© 2025 Dr. Jefna Sagir Clinic</p>
+  </main>
+</body>
+</html>
