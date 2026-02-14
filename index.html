@@ -3,164 +3,1486 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Dr. Jefna Sagir - Orthodontist Kuwait. Private clinic coming soon.">
-  <title>Dr. Jefna Sagir | Orthodontist Kuwait - Coming Soon</title>
+  <meta name="description" content="Dr. Jefna Sagir - MOH Licensed Orthodontist in Kuwait. 13+ years experience. Invisalign, braces, clear aligners. Book your consultation.">
+  <title>Dr. Jefna Sagir | Orthodontist Kuwait — Invisalign & Braces Specialist</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><circle cx='16' cy='16' r='14' fill='%232d6a6a'/></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Outfit:wght@300;400;500;600&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --cream: #faf8f5;
       --sand: #e8e2da;
       --teal: #2d6a6a;
       --teal-light: #4a8b8b;
+      --teal-dark: #1e4a4a;
       --charcoal: #2c2c2c;
       --gold: #b8860b;
+      --white: #ffffff;
+      --shadow: 0 4px 24px rgba(45, 106, 106, 0.12);
+      --shadow-lg: 0 12px 48px rgba(45, 106, 106, 0.15);
+      --header-bg: rgba(250, 248, 245, 0.95);
+      --header-border: rgba(45, 106, 106, 0.08);
+      --footer-bg: #2c2c2c;
+      --footer-text: rgba(255, 255, 255, 0.8);
+    }
+    [data-theme="dark"] {
+      --cream: #1a1d1f;
+      --sand: #2d3235;
+      --teal: #5ba3a3;
+      --teal-light: #7ab8b8;
+      --teal-dark: #3d7a7a;
+      --charcoal: #e8e6e4;
+      --white: #25282b;
+      --shadow: 0 4px 24px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 12px 48px rgba(0, 0, 0, 0.4);
+      --header-bg: rgba(26, 29, 31, 0.95);
+      --header-border: rgba(255, 255, 255, 0.06);
+      --footer-bg: #0f1113;
+      --footer-text: rgba(255, 255, 255, 0.7);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    html {
-      scroll-behavior: smooth;
-    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    img { max-width: 100%; height: auto; display: block; }
 
     body {
-      font-family: 'Outfit', sans-serif;
+      font-family: 'Outfit', 'Tajawal', sans-serif;
       background: var(--cream);
       color: var(--charcoal);
-      min-height: 100vh;
+      line-height: 1.6;
       overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
     }
+    [dir="rtl"] body { font-family: 'Tajawal', 'Outfit', sans-serif; }
 
-    .bg-pattern {
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      z-index: 100;
+      padding: 0.5rem 1rem;
+      background: var(--teal);
+      color: white;
+      text-decoration: none;
+      border-radius: 4px;
+      transition: top 0.2s;
+    }
+    .skip-link:focus { top: 1rem; }
+
+    /* Header */
+    .header {
       position: fixed;
-      inset: 0;
-      background-image: 
-        radial-gradient(circle at 20% 80%, rgba(45, 106, 106, 0.03) 0%, transparent 50%),
-        radial-gradient(circle at 80% 20%, rgba(184, 134, 11, 0.04) 0%, transparent 50%),
-        repeating-linear-gradient(
-          45deg,
-          transparent,
-          transparent 40px,
-          rgba(45, 106, 106, 0.02) 40px,
-          rgba(45, 106, 106, 0.02) 80px
-        );
-      pointer-events: none;
-      z-index: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 50;
+      background: var(--header-bg);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid var(--header-border);
+      transition: box-shadow 0.2s, background 0.3s;
+    }
+    .header.scrolled { box-shadow: var(--shadow); }
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.875rem 1.25rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: var(--charcoal);
+    }
+    .logo span { color: var(--teal); font-style: italic; }
+    .nav-toggle {
+      background: none;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav-toggle svg { width: 24px; height: 24px; stroke: var(--charcoal); }
+    .nav-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 280px;
+      height: 100vh;
+      background: var(--white);
+      padding: 5rem 1.5rem 2rem;
+      transform: translateX(100%);
+      transition: transform 0.3s ease;
+      box-shadow: -4px 0 24px rgba(0,0,0,0.08);
+    }
+    [dir="rtl"] .nav-menu { right: auto; left: 0; transform: translateX(-100%); box-shadow: 4px 0 24px rgba(0,0,0,0.08); }
+    .nav-menu.open { transform: translateX(0); }
+    [dir="rtl"] .nav-menu.open { transform: translateX(0); }
+    .nav-close {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      background: none;
+      border: none;
+      padding: 0.5rem;
+      cursor: pointer;
+    }
+    [dir="rtl"] .nav-close { right: auto; left: 1rem; }
+    .nav-menu a {
+      display: block;
+      padding: 0.75rem 0;
+      color: var(--charcoal);
+      text-decoration: none;
+      font-weight: 500;
+      border-bottom: 1px solid var(--sand);
+    }
+    .nav-menu a:hover { color: var(--teal); }
+
+    /* Sections */
+    section {
+      padding: 3.5rem 1.25rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.75rem, 4vw, 2.5rem);
+      font-weight: 500;
+      color: var(--teal-dark);
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+    .section-subtitle {
+      font-size: 0.9rem;
+      color: var(--teal);
+      text-align: center;
+      margin-bottom: 2rem;
+      letter-spacing: 0.05em;
     }
 
-    main {
-      position: relative;
-      z-index: 1;
+    /* Hero */
+    .hero {
       min-height: 100vh;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 2rem 1.5rem;
+      padding-top: 4rem;
+      padding-bottom: 2rem;
+    }
+    .hero-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2rem;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .hero-inner {
+        flex-direction: row;
+        align-items: center;
+        gap: 3rem;
+        text-align: left;
+      }
+      .hero-inner .hero-content { align-items: flex-start; text-align: left; }
+      .hero-inner .hero-desc { margin: 0 0 1.5rem 0; }
+    }
+    [dir="rtl"] @media (min-width: 768px) {
+      .hero-inner { flex-direction: row-reverse; }
+    }
+    .hero-image {
+      flex-shrink: 0;
+      width: min(300px, 90vw);
+      position: relative;
+    }
+    .hero-video-thumb {
+      position: relative;
+      width: 100%;
+      cursor: pointer;
+      display: block;
+    }
+    .hero-video-thumb img {
+      width: 100%;
+      height: auto;
+      max-height: 55vh;
+      object-fit: cover;
+      object-position: center center;
+      border-radius: 12px;
+      box-shadow: var(--shadow-lg);
+      display: block;
+    }
+    .hero-play-overlay {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-start;
+      padding: 1rem;
+      border-radius: 12px;
+      pointer-events: none;
+    }
+    [dir="rtl"] .hero-play-overlay { justify-content: flex-end; }
+    .hero-play-overlay .hero-play-btn {
+      pointer-events: auto;
+    }
+    .hero-play-btn {
+      width: 64px;
+      height: 64px;
+      min-width: 64px;
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 255, 255, 0.25);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      border-radius: 50%;
+      cursor: pointer;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.12);
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+      padding: 0;
+      padding-left: 4px;
+    }
+    .hero-play-btn:hover {
+      transform: scale(1.06);
+      background: rgba(255, 255, 255, 0.4);
+      box-shadow: 0 6px 32px rgba(0, 0, 0, 0.15);
+    }
+    .hero-play-btn:active { transform: scale(0.97); }
+    .hero-play-btn svg {
+      fill: rgba(255, 255, 255, 0.95);
+      filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+    }
+    @media (min-width: 768px) {
+      .hero-play-btn {
+        width: 56px;
+        height: 56px;
+        min-width: 56px;
+        min-height: 56px;
+        padding-left: 3px;
+      }
+    }
+    .hero-video-embed {
+      position: absolute;
+      inset: 0;
+      border-radius: 12px;
+      overflow: hidden;
+      display: none;
+    }
+    .hero-video-embed.active {
+      display: block;
+    }
+    .hero-video-embed iframe {
+      width: 100%;
+      height: 100%;
+      border: none;
+      border-radius: 12px;
+    }
+    .hero-video-thumb.playing .hero-play-overlay {
+      display: none;
+    }
+    .hero-video-thumb.playing img {
+      visibility: hidden;
+    }
+    @media (min-width: 768px) {
+      .hero-image {
+        width: 360px;
+        max-height: none;
+      }
+      .hero-video-thumb img {
+        max-height: 480px;
+        object-position: center;
+      }
+    }
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
     }
-
-    .badge {
-      font-size: 0.75rem;
+    .hero-badge {
+      font-size: 0.7rem;
       letter-spacing: 0.2em;
       text-transform: uppercase;
       color: var(--teal);
-      margin-bottom: 1.5rem;
+      margin-bottom: 1rem;
       font-weight: 500;
-      opacity: 0.9;
     }
-
-    h1 {
+    .hero h1 {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(2.5rem, 8vw, 4.5rem);
+      font-size: clamp(2.5rem, 9vw, 4.25rem);
       font-weight: 400;
-      color: var(--charcoal);
-      line-height: 1.15;
+      line-height: 1.1;
       margin-bottom: 0.5rem;
     }
-
-    h1 span {
-      font-style: italic;
-      color: var(--teal);
-    }
-
-    .subtitle {
+    .hero h1 span { font-style: italic; color: var(--teal); }
+    .hero-tagline {
       font-family: 'Cormorant Garamond', serif;
-      font-size: clamp(1.25rem, 3vw, 1.75rem);
-      font-weight: 400;
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
       color: var(--teal);
-      margin-bottom: 2rem;
+      margin-bottom: 1.5rem;
     }
-
-    .coming-soon {
+    .hero-cta {
       display: inline-flex;
       align-items: center;
-      gap: 0.75rem;
-      padding: 0.875rem 1.75rem;
+      gap: 0.5rem;
+      padding: 0.875rem 1.5rem;
       background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
       color: white;
-      font-size: 0.9rem;
-      letter-spacing: 0.15em;
-      text-transform: uppercase;
+      text-decoration: none;
       font-weight: 500;
-      border-radius: 4px;
-      margin-bottom: 3rem;
-      box-shadow: 0 4px 24px rgba(45, 106, 106, 0.25);
+      font-size: 0.9rem;
+      border-radius: 6px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
     }
+    .hero-cta:hover { transform: translateY(-2px); box-shadow: var(--shadow-lg); }
 
-    .coming-soon::before,
-    .coming-soon::after {
-      content: '';
-      width: 8px;
-      height: 8px;
-      background: white;
+    /* About */
+    .about {
+      background: var(--white);
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      margin: 0 1.25rem 2rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .about-inner {
+      display: grid;
+      gap: 2rem;
+      padding: 2rem 1.5rem;
+    }
+    @media (min-width: 768px) {
+      .about-inner { grid-template-columns: 280px 1fr; align-items: center; padding: 2.5rem; }
+    }
+    .about-photo {
+      width: 200px;
+      height: 200px;
       border-radius: 50%;
-      animation: pulse 2s ease-in-out infinite;
+      object-fit: cover;
+      margin: 0 auto;
+      border: 4px solid var(--sand);
     }
-
-    .coming-soon::after {
-      animation-delay: 1s;
+    .about h2 { margin-bottom: 1rem; }
+    .about p { color: var(--charcoal); opacity: 0.9; margin-bottom: 1rem; }
+    .about-list {
+      list-style: none;
+      margin-top: 1rem;
     }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 1; transform: scale(1); }
-      50% { opacity: 0.5; transform: scale(0.8); }
+    .about-list li {
+      padding: 0.4rem 0;
+      padding-left: 1.5rem;
+      position: relative;
     }
-
-    .tagline {
-      font-size: 1rem;
-      font-weight: 300;
-      color: var(--charcoal);
-      max-width: 400px;
-      line-height: 1.7;
-      opacity: 0.85;
-    }
-
-    .footer {
+    [dir="rtl"] .about-list li { padding-left: 0; padding-right: 1.5rem; }
+    .about-list li::before {
+      content: '✓';
       position: absolute;
-      bottom: 2rem;
-      left: 50%;
-      transform: translateX(-50%);
-      font-size: 0.8rem;
-      color: var(--charcoal);
-      opacity: 0.6;
+      left: 0;
+      color: var(--teal);
+      font-weight: 600;
     }
+    [dir="rtl"] .about-list li::before { left: auto; right: 0; }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      gap: 1.25rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 640px) { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (min-width: 960px) { .services-grid { grid-template-columns: repeat(3, 1fr); } }
+    .service-card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.35rem;
+      color: var(--teal-dark);
+      margin-bottom: 0.5rem;
+    }
+    .service-card p { font-size: 0.9rem; opacity: 0.85; }
+
+    /* Smile Gallery - Before/After Slider */
+    .smile-gallery { padding: 3.5rem 1rem; }
+    .slider-container {
+      max-width: 500px;
+      width: 100%;
+      margin: 0 auto 2rem;
+      padding: 0 0.5rem;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      position: relative;
+      user-select: none;
+      touch-action: none;
+    }
+    @media (max-width: 480px) {
+      .smile-gallery { padding: 2.5rem 0.75rem; }
+      .slider-container {
+        padding: 0 0.25rem;
+        margin-bottom: 1.5rem;
+        max-width: calc(100vw - 1.5rem);
+      }
+    }
+    .slider-wrapper {
+      position: relative;
+      aspect-ratio: 4/3;
+      cursor: ew-resize;
+      -webkit-user-select: none;
+      user-select: none;
+    }
+    .slider-before, .slider-after {
+      position: absolute;
+      inset: 0;
+      background-size: cover;
+      background-position: center;
+      background-color: var(--sand);
+    }
+    .slider-before { z-index: 2; }
+    .slider-after { z-index: 1; }
+    .slider-divider {
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 50%;
+      width: 3px;
+      background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.3) 15%, rgba(255,255,255,0.95) 50%, rgba(255,255,255,0.3) 85%, transparent);
+      z-index: 3;
+      transform: translateX(-50%);
+      box-shadow: 0 0 20px rgba(255,255,255,0.4);
+    }
+    .slider-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 48px;
+      height: 48px;
+      background: linear-gradient(145deg, #ffffff 0%, #f5f5f5 100%);
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 4;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15), 0 0 0 1px rgba(255,255,255,0.8) inset;
+      pointer-events: none;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+    .slider-wrapper:hover .slider-handle {
+      transform: translate(-50%, -50%) scale(1.08);
+      box-shadow: 0 6px 28px rgba(0,0,0,0.2), 0 0 0 1px rgba(255,255,255,0.9) inset;
+    }
+    .slider-handle::before {
+      content: '';
+      width: 18px;
+      height: 2px;
+      background: var(--teal);
+      border-radius: 1px;
+      box-shadow: 0 0 8px rgba(45, 106, 106, 0.4);
+    }
+    .slider-labels {
+      position: absolute;
+      bottom: 0.75rem;
+      z-index: 5;
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      padding: 0 1rem;
+      pointer-events: none;
+    }
+    .slider-labels span {
+      background: rgba(0,0,0,0.6);
+      color: white;
+      padding: 0.25rem 0.6rem;
+      font-size: 0.75rem;
+      border-radius: 4px;
+    }
+    .slider-caption {
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--teal-dark);
+      margin-top: 0.75rem;
+      font-weight: 500;
+    }
+    .slider-nav {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1rem;
+      flex-wrap: wrap;
+    }
+    .slider-nav button {
+      padding: 0.5rem 1rem;
+      background: var(--sand);
+      border: none;
+      border-radius: 6px;
+      font-size: 0.8rem;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .slider-nav button:hover, .slider-nav button.active { background: var(--teal); color: white; }
+
+    /* Achievements */
+    .achievements {
+      background: linear-gradient(135deg, var(--teal-dark) 0%, var(--teal) 100%);
+      color: white;
+      border-radius: 12px;
+      margin: 0 1.25rem 2rem;
+      max-width: 1200px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .achievements-inner { padding: 2.5rem 1.5rem; }
+    .achievements .section-title { color: white; }
+    .achievements .section-subtitle { color: rgba(255,255,255,0.85); }
+    .achievements-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 640px) { .achievements-grid { grid-template-columns: repeat(2, 1fr); } }
+    .achievement-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .achievement-item span {
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .achievement-item strong { display: block; margin-bottom: 0.25rem; }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+    }
+    @media (min-width: 640px) { .contact-grid { grid-template-columns: 1fr 1fr; } }
+    @media (min-width: 768px) { .contact-grid { grid-template-columns: 1fr 1fr 1fr; } }
+    .contact-hours { font-size: 0.95rem; line-height: 1.8; }
+    .contact-hours .closed { opacity: 0.7; }
+    .contact-card {
+      background: var(--white);
+      padding: 1.5rem;
+      border-radius: 10px;
+      box-shadow: var(--shadow);
+    }
+    .contact-card h3 { color: var(--teal-dark); margin-bottom: 0.5rem; font-size: 1.1rem; }
+    .contact-card a {
+      color: var(--teal);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-card a:hover { text-decoration: underline; }
+
+    /* Ask Dr. Jefna - Chat-style FAQ */
+    .faq-chat {
+      max-width: 640px;
+      margin: 0 auto;
+      padding: 0 0.5rem;
+    }
+    .faq-chat-header {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+      padding: 0.5rem 0;
+    }
+    .faq-chat-avatar {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--teal);
+    }
+    .faq-chat-header-text h3 { font-size: 1.1rem; color: var(--teal-dark); }
+    .faq-chat-header-text span { font-size: 0.8rem; color: var(--teal); opacity: 0.9; }
+    .faq-bubble {
+      max-width: 85%;
+      padding: 0.875rem 1rem;
+      border-radius: 12px;
+      margin-bottom: 0.75rem;
+      font-size: 0.95rem;
+      line-height: 1.5;
+      position: relative;
+    }
+    .faq-bubble.question {
+      align-self: flex-start;
+      background: var(--sand);
+      color: var(--charcoal);
+      border-bottom-left-radius: 4px;
+    }
+    .faq-bubble.answer {
+      align-self: flex-end;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-light) 100%);
+      color: white;
+      border-bottom-right-radius: 4px;
+      margin-left: auto;
+    }
+    [dir="rtl"] .faq-bubble.question { align-self: flex-end; border-bottom-left-radius: 12px; border-bottom-right-radius: 4px; }
+    [dir="rtl"] .faq-bubble.answer { align-self: flex-start; margin-left: 0; margin-right: auto; border-bottom-right-radius: 12px; border-bottom-left-radius: 4px; }
+    .faq-bubble.answer .faq-from {
+      display: block;
+      font-size: 0.75rem;
+      opacity: 0.95;
+      margin-bottom: 0.4rem;
+      font-weight: 500;
+    }
+    .faq-thread {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    .faq-cta {
+      text-align: center;
+      margin-top: 1.5rem;
+    }
+    .faq-cta a {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--teal);
+      font-weight: 500;
+      text-decoration: none;
+    }
+    .faq-cta a:hover { text-decoration: underline; }
+
+    /* Video Intros */
+    .video-intros { padding: 3.5rem 1rem; }
+    .video-intros-grid {
+      display: grid;
+      gap: 1.5rem;
+      margin-top: 1.5rem;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    @media (min-width: 640px) {
+      .video-intros-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (min-width: 960px) {
+      .video-intros-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .video-intro-card {
+      background: var(--white);
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .video-intro-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+    .video-intro-card video {
+      width: 100%;
+      aspect-ratio: 9/16;
+      object-fit: cover;
+      display: block;
+    }
+    .video-intro-card h3 {
+      padding: 1rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      color: var(--teal-dark);
+    }
+    .video-hero-wrap {
+      position: relative;
+      aspect-ratio: 9/16;
+      max-width: 320px;
+      margin: 0 auto 1.5rem;
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+    }
+    @media (min-width: 480px) {
+      .video-hero-wrap { max-width: 360px; }
+    }
+    @media (min-width: 640px) {
+      .video-hero-wrap { max-width: 400px; }
+    }
+    .video-hero-wrap .video-embed-inner {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 9/16;
+      overflow: hidden;
+      background: var(--cream);
+    }
+    .video-hero-wrap .video-embed-inner iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+    .video-intro-card .video-embed-inner {
+      position: relative;
+      aspect-ratio: 9/16;
+      overflow: hidden;
+      background: var(--bg);
+    }
+    .video-intro-card .video-embed-inner iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* Footer */
+    .footer {
+      background: var(--footer-bg);
+      color: var(--footer-text);
+      padding: 2rem 1.25rem;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+    .footer a { color: white; }
+    .footer-social {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .footer-social a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.9);
+      transition: all 0.25s ease;
+    }
+    .footer-social a:hover {
+      background: rgba(255,255,255,0.18);
+      color: white;
+      transform: translateY(-3px);
+    }
+    .footer-social a svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    /* WhatsApp Float */
+    .whatsapp-float {
+      position: fixed;
+      bottom: 1.5rem;
+      right: 1.5rem;
+      z-index: 100;
+      width: 56px;
+      height: 56px;
+      background: #25D366;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+      transition: transform 0.2s, box-shadow 0.2s;
+      text-decoration: none;
+    }
+    .whatsapp-float:hover {
+      transform: scale(1.08);
+      box-shadow: 0 6px 28px rgba(37, 211, 102, 0.6);
+    }
+    [dir="rtl"] .whatsapp-float { right: auto; left: 1.5rem; }
+    .whatsapp-float svg {
+      width: 32px;
+      height: 32px;
+      fill: white;
+    }
+
+    /* Language switcher */
+    .lang-switcher {
+      display: flex;
+      gap: 0.25rem;
+      margin-left: 1rem;
+    }
+    [dir="rtl"] .lang-switcher { margin-left: 0; margin-right: 1rem; }
+    .lang-switcher button {
+      background: none;
+      border: none;
+      padding: 0.35rem 0.6rem;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--charcoal);
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background 0.2s, color 0.2s;
+    }
+    .lang-switcher button:hover { color: var(--teal); background: rgba(45, 106, 106, 0.08); }
+    .lang-switcher button.active { color: var(--teal); background: rgba(45, 106, 106, 0.12); }
+
+    /* Dark mode toggle */
+    .theme-toggle {
+      background: none;
+      border: none;
+      padding: 0.4rem;
+      cursor: pointer;
+      border-radius: 6px;
+      color: var(--charcoal);
+      transition: background 0.2s, color 0.2s;
+    }
+    .theme-toggle:hover { background: rgba(45, 106, 106, 0.08); color: var(--teal); }
+    .theme-toggle svg { width: 20px; height: 20px; }
+    .theme-toggle .icon-sun { display: none; }
+    .theme-toggle .icon-moon { display: block; }
+    [data-theme="dark"] .theme-toggle .icon-sun { display: block; }
+    [data-theme="dark"] .theme-toggle .icon-moon { display: none; }
   </style>
 </head>
 <body>
-  <div class="bg-pattern"></div>
-  <main>
-    <p class="badge">Private Clinic</p>
-    <h1>Dr. <span>Jefna Sagir</span></h1>
-    <p class="subtitle">Orthodontist — Kuwait</p>
-    <div class="coming-soon">Coming Soon</div>
-    <p class="tagline">We're preparing something special. Our new practice will be opening soon to serve you with dedicated orthodontic care.</p>
-    <p class="footer">© 2025 Dr. Jefna Sagir Clinic</p>
+  <a href="#main" class="skip-link" data-i18n="skipLink">Skip to content</a>
+
+  <header class="header" id="header">
+    <nav class="nav">
+      <a href="#" class="logo">Dr. <span>Jefna Sagir</span></a>
+      <div style="display: flex; align-items: center; gap: 0.25rem;">
+        <button type="button" class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode" title="Toggle dark mode" onclick="toggleTheme()">
+          <svg class="icon-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+          <svg class="icon-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+        </button>
+        <div class="lang-switcher">
+          <button type="button" id="langEn" onclick="setLang('en')" aria-label="English">EN</button>
+          <button type="button" id="langAr" onclick="setLang('ar')" aria-label="العربية">ع</button>
+        </div>
+        <button class="nav-toggle" aria-label="Open menu" onclick="document.querySelector('.nav-menu').classList.add('open')">
+        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" /></svg>
+      </button>
+      </div>
+    </nav>
+    <div class="nav-menu" id="navMenu">
+      <button class="nav-close" aria-label="Close menu" onclick="document.querySelector('.nav-menu').classList.remove('open')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>
+      </button>
+      <a href="#about" data-i18n="nav.about" onclick="document.querySelector('.nav-menu').classList.remove('open')">About</a>
+      <a href="#videos" data-i18n="nav.videos" onclick="document.querySelector('.nav-menu').classList.remove('open')">Video Intros</a>
+      <a href="#services" data-i18n="nav.services" onclick="document.querySelector('.nav-menu').classList.remove('open')">Services</a>
+      <a href="#smiles" data-i18n="nav.gallery" onclick="document.querySelector('.nav-menu').classList.remove('open')">Smile Gallery</a>
+      <a href="#faq" data-i18n="nav.faq" onclick="document.querySelector('.nav-menu').classList.remove('open')">Ask Dr. Jefna</a>
+      <a href="#contact" data-i18n="nav.contact" onclick="document.querySelector('.nav-menu').classList.remove('open')">Contact</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-image">
+          <div class="hero-video-thumb" id="heroVideoThumb" role="button" tabindex="0" aria-label="Play introduction video">
+            <img src="assets/dr-jefna-hero.png" alt="Dr. Jefna Sagir - Specialist Orthodontist, Kuwait" width="360" height="450" loading="eager">
+            <div class="hero-play-overlay">
+              <button type="button" class="hero-play-btn" aria-hidden="true">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg>
+              </button>
+            </div>
+            <div class="hero-video-embed" id="heroVideoEmbed"></div>
+          </div>
+        </div>
+        <div class="hero-content">
+          <p class="hero-badge" data-i18n="hero.badge">MOH Licensed Orthodontist</p>
+          <h1>Dr. <span>Jefna Sagir</span></h1>
+          <p class="hero-tagline" data-i18n="hero.tagline">Orthodontist — Kuwait</p>
+          <p class="hero-desc" style="max-width: 400px; margin: 0 auto 1.5rem; font-size: 0.95rem; opacity: 0.9;" data-i18n="hero.desc">13+ years of experience. 500+ successful cases. Your journey to a confident smile starts here.</p>
+          <a href="https://wa.me/96541011555" class="hero-cta" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.865 9.865 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+        <span data-i18n="hero.cta">Book Consultation</span>
+      </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-inner">
+        <img src="assets/dr-jefna-profile.jpg" alt="Dr. Jefna Sagir - Orthodontist Kuwait" class="about-photo" width="200" height="200" loading="lazy">
+        <div>
+          <h2 class="section-title" data-i18n="about.title">Meet Dr. Jefna Sagir</h2>
+          <p data-i18n="about.p1">MOH Licensed Registrar Orthodontist in Kuwait (License #183415) with over 13 years of experience in India and Kuwait. University Rank 1 & Gold Medalist from Dr. M.G.R. Medical University.</p>
+          <p data-i18n="about.p2">Dr. Jefna has successfully completed 500+ orthodontic cases in Kuwait and is a certified Invisalign provider. Her expertise spans straight wire technique, clear aligners, self-ligating brackets, and myofunctional appliances.</p>
+          <ul class="about-list">
+            <li data-i18n="about.li1">Adult & surgical orthodontic cases</li>
+            <li data-i18n="about.li2">Cleft lip and palate management</li>
+            <li data-i18n="about.li3">Impacted canine treatment</li>
+            <li data-i18n="about.li4">Micro-implant mechanics</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="video-intros" id="videos">
+      <h2 class="section-title" data-i18n="videos.title">Meet Dr. Jefna</h2>
+      <p class="section-subtitle" data-i18n="videos.subtitle">60-second intros — Dr. Jefna explains treatments in simple terms</p>
+      <div class="video-hero-wrap">
+        <div class="video-embed-inner">
+          <iframe src="https://www.youtube.com/embed/z9Ox-19NSCE?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="Dr. Jefna — Introduction"></iframe>
+        </div>
+      </div>
+      <p class="section-subtitle" style="margin-top: -0.5rem;">
+        <a href="https://www.youtube.com/embed/z9Ox-19NSCE" target="_blank" rel="noopener" style="color: var(--teal); font-weight: 500;">Watch on YouTube ↗</a>
+      </p>
+      <div class="video-intros-grid">
+        <div class="video-intro-card">
+          <div class="video-embed-inner">
+            <iframe src="https://www.youtube.com/embed/j_kIlb9B850?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="5 things before orthodontic treatment"></iframe>
+          </div>
+          <h3 data-i18n="videos.v1">5 things before getting orthodontic treatment</h3>
+        </div>
+        <div class="video-intro-card">
+          <div class="video-embed-inner">
+            <iframe src="https://www.youtube.com/embed/bS8Ql80ie6o?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="About retainers"></iframe>
+          </div>
+          <h3 data-i18n="videos.v2">About retainers</h3>
+        </div>
+        <div class="video-intro-card">
+          <div class="video-embed-inner">
+            <iframe src="https://www.youtube.com/embed/t4WajOweKd8?rel=0&modestbranding=1" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy" title="Getting braces — facts"></iframe>
+          </div>
+          <h3 data-i18n="videos.v3">Getting braces — facts</h3>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <h2 class="section-title" data-i18n="services.title">Our Services</h2>
+      <p class="section-subtitle" data-i18n="services.subtitle">Comprehensive orthodontic care tailored to you</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3 data-i18n="services.s1.title">Invisalign & Clear Aligners</h3>
+          <p data-i18n="services.s1.desc">Discreet, removable aligners for a comfortable path to your perfect smile. Certified Invisalign provider.</p>
+        </div>
+        <div class="service-card">
+          <h3 data-i18n="services.s2.title">Traditional & Ceramic Braces</h3>
+          <p data-i18n="services.s2.desc">Metal and ceramic options using straight wire technique for effective, predictable results.</p>
+        </div>
+        <div class="service-card">
+          <h3 data-i18n="services.s3.title">Self-Ligating Brackets</h3>
+          <p data-i18n="services.s3.desc">Reduced friction, fewer appointments, and potentially shorter treatment time.</p>
+        </div>
+        <div class="service-card">
+          <h3 data-i18n="services.s4.title">Early Intervention</h3>
+          <p data-i18n="services.s4.desc">Pediatric orthodontics and myofunctional appliances for growing patients.</p>
+        </div>
+        <div class="service-card">
+          <h3 data-i18n="services.s5.title">Complex Cases</h3>
+          <p data-i18n="services.s5.desc">Impacted canines, cleft lip/palate, mutilated dentition, and surgical orthodontics.</p>
+        </div>
+        <div class="service-card">
+          <h3 data-i18n="services.s6.title">Retainers</h3>
+          <p data-i18n="services.s6.desc">Custom retention plans to protect your new smile for years to come.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="smile-gallery" id="smiles">
+      <h2 class="section-title" data-i18n="gallery.title">Smile Gallery</h2>
+      <p class="section-subtitle" data-i18n="gallery.subtitle">Drag or swipe to compare before & after</p>
+
+      <div class="slider-container">
+        <div class="slider-wrapper" id="sliderWrapper" role="img" aria-label="Before and after comparison slider">
+          <div class="slider-after" id="sliderAfter"></div>
+          <div class="slider-before" id="sliderBefore"></div>
+          <div class="slider-divider" id="sliderDivider">
+            <div class="slider-handle" id="sliderHandle"></div>
+          </div>
+          <div class="slider-labels">
+            <span data-i18n="gallery.before">Before</span>
+            <span data-i18n="gallery.after">After</span>
+          </div>
+        </div>
+        <p class="slider-caption" id="sliderCaption">Case 1</p>
+        <div class="slider-nav" id="sliderNav"></div>
+      </div>
+    </section>
+
+    <section class="achievements">
+      <div class="achievements-inner">
+        <h2 class="section-title" data-i18n="achievements.title">Achievements & Expertise</h2>
+        <p class="section-subtitle" data-i18n="achievements.subtitle">Recognized excellence in orthodontics</p>
+        <div class="achievements-grid">
+          <div class="achievement-item">
+            <span>🏆</span>
+            <div>
+              <strong data-i18n="achievements.a1.title">University Rank 1 & Gold Medalist</strong>
+              <span data-i18n="achievements.a1.desc">Highest marks in MDS Orthodontics, Dr. M.G.R. Medical University</span>
+            </div>
+          </div>
+          <div class="achievement-item">
+            <span>✓</span>
+            <div>
+              <strong data-i18n="achievements.a2.title">500+ Cases in Kuwait</strong>
+              <span data-i18n="achievements.a2.desc">Successfully completed orthodontic treatments</span>
+            </div>
+          </div>
+          <div class="achievement-item">
+            <span>✓</span>
+            <div>
+              <strong data-i18n="achievements.a3.title">Certified Invisalign Provider</strong>
+              <span data-i18n="achievements.a3.desc">Expert in clear aligner treatment</span>
+            </div>
+          </div>
+          <div class="achievement-item">
+            <span>✓</span>
+            <div>
+              <strong data-i18n="achievements.a4.title">MOH Licensed</strong>
+              <span data-i18n="achievements.a4.desc">Registrar Orthodontist, Kuwait (License #183415)</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <h2 class="section-title" data-i18n="faq.title">Ask Dr. Jefna</h2>
+      <p class="section-subtitle" data-i18n="faq.subtitle">Common questions — answered personally</p>
+      <div class="faq-chat">
+        <div class="faq-chat-header">
+          <img src="assets/dr-jefna-profile.jpg" alt="" class="faq-chat-avatar" width="48" height="48" loading="lazy">
+          <div class="faq-chat-header-text">
+            <h3>Dr. Jefna Sagir</h3>
+            <span data-i18n="faq.online">Online — replies typically within hours</span>
+          </div>
+        </div>
+        <div class="faq-thread">
+          <div class="faq-bubble question" data-i18n="faq.q1">When should my child first see an orthodontist?</div>
+          <div class="faq-bubble answer"><span class="faq-from" data-i18n="faq.from"></span><span class="faq-answer" data-i18n="faq.a1"></span></div>
+          <div class="faq-bubble question" data-i18n="faq.q2">How long does treatment usually take?</div>
+          <div class="faq-bubble answer"><span class="faq-from" data-i18n="faq.from"></span><span class="faq-answer" data-i18n="faq.a2"></span></div>
+          <div class="faq-bubble question" data-i18n="faq.q3">Does Invisalign work for everyone?</div>
+          <div class="faq-bubble answer"><span class="faq-from" data-i18n="faq.from"></span><span class="faq-answer" data-i18n="faq.a3"></span></div>
+          <div class="faq-bubble question" data-i18n="faq.q4">Are braces painful?</div>
+          <div class="faq-bubble answer"><span class="faq-from" data-i18n="faq.from"></span><span class="faq-answer" data-i18n="faq.a4"></span></div>
+          <div class="faq-bubble question" data-i18n="faq.q5">Will I need retainers after treatment?</div>
+          <div class="faq-bubble answer"><span class="faq-from" data-i18n="faq.from"></span><span class="faq-answer" data-i18n="faq.a5"></span></div>
+        </div>
+        <p class="faq-cta">
+          <a href="https://wa.me/96541011555" target="_blank" rel="noopener">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.865 9.865 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+            <span data-i18n="faq.cta">Have another question? Message me on WhatsApp</span>
+          </a>
+        </p>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2 class="section-title" data-i18n="contact.title">Contact Us</h2>
+      <p class="section-subtitle" data-i18n="contact.subtitle">Book your consultation today</p>
+      <div class="contact-grid">
+        <div class="contact-card">
+          <h3 data-i18n="contact.location.title">📍 Location</h3>
+          <p data-i18n="contact.location.text">8th Floor, Modern Arab Dental Clinic, Salmiya, Kuwait</p>
+          <a href="https://share.google/cAMFQXEcq58jHlpHw" target="_blank" rel="noopener" data-i18n="contact.directions">Get Directions →</a>
+        </div>
+        <div class="contact-card">
+          <h3>📞 WhatsApp & Call</h3>
+          <a href="https://wa.me/96541011555" target="_blank" rel="noopener">+965 4101 1555</a>
+        </div>
+        <div class="contact-card">
+          <h3 data-i18n="contact.hours.title">🕐 Opening Hours</h3>
+          <div class="contact-hours">
+            <p><span data-i18n="contact.hours.mon">Mon</span> 12:00–20:00</p>
+            <p><span data-i18n="contact.hours.tue">Tue</span> 12:00–20:00</p>
+            <p><span data-i18n="contact.hours.wed">Wed</span> 12:00–20:00</p>
+            <p><span data-i18n="contact.hours.thu">Thu</span> 12:00–17:00</p>
+            <p class="closed"><span data-i18n="contact.hours.fri">Fri</span> <span data-i18n="contact.hours.closed">Closed</span></p>
+            <p><span data-i18n="contact.hours.sat">Sat</span> 12:00–20:00</p>
+            <p><span data-i18n="contact.hours.sun">Sun</span> 12:00–20:00</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
+
+  <footer class="footer">
+    <div class="footer-social" id="footerSocial"></div>
+    <p data-i18n="footer">© 2025 Dr. Jefna Sagir Clinic. All rights reserved.</p>
+  </footer>
+
+  <a href="https://wa.me/96541011555" class="whatsapp-float" aria-label="Chat on WhatsApp" data-i18n-aria="whatsappAria" target="_blank" rel="noopener">
+    <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.865 9.865 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+  </a>
+
+  <script>
+    const WHATSAPP_NUMBER = '96541011555';
+    document.querySelectorAll('a[href*="wa.me"]').forEach(el => {
+      el.href = 'https://wa.me/' + WHATSAPP_NUMBER;
+    });
+    document.querySelectorAll('[data-phone]').forEach(el => {
+      el.href = 'tel:+' + WHATSAPP_NUMBER;
+    });
+
+    const SOCIAL_LINKS = {
+      youtube: 'https://www.youtube.com/@dr.jefna.orthodontist.kuwa9339',
+      instagram: 'https://www.instagram.com/dr.jefna.orthodontist.kuwait',
+      facebook: 'https://www.facebook.com/dr.jefna.orthodontist.kuwait/',
+      twitter: 'https://x.com/drjefna_dentist',
+      linkedin: 'https://www.linkedin.com/in/jefna-sagir-05661615b'
+    };
+
+    const SOCIAL_ICONS = {
+      youtube: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>',
+      instagram: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.85-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.766 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.766-2.618 6.98-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>',
+      facebook: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>',
+      twitter: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>',
+      linkedin: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>'
+    };
+
+    function renderSocialLinks() {
+      const container = document.getElementById('footerSocial');
+      const order = ['youtube', 'instagram', 'facebook', 'twitter', 'linkedin'];
+      container.innerHTML = order
+        .filter(k => SOCIAL_LINKS[k])
+        .map(k => `<a href="${SOCIAL_LINKS[k]}" target="_blank" rel="noopener noreferrer" aria-label="${k.charAt(0).toUpperCase() + k.slice(1)}">${SOCIAL_ICONS[k]}</a>`)
+        .join('');
+    }
+
+    const t = {
+      en: {
+        skipLink: 'Skip to content',
+        nav: { about: 'About', videos: 'Video Intros', services: 'Services', gallery: 'Smile Gallery', faq: 'Ask Dr. Jefna', contact: 'Contact' },
+        hero: {
+          badge: 'MOH Licensed Orthodontist',
+          tagline: 'Orthodontist — Kuwait',
+          desc: '13+ years of experience. 500+ successful cases. Your journey to a confident smile starts here.',
+          cta: 'Book Consultation'
+        },
+        about: {
+          title: 'Meet Dr. Jefna Sagir',
+          p1: 'MOH Licensed Registrar Orthodontist in Kuwait (License #183415) with over 13 years of experience in India and Kuwait. University Rank 1 & Gold Medalist from Dr. M.G.R. Medical University.',
+          p2: 'Dr. Jefna has successfully completed 500+ orthodontic cases in Kuwait and is a certified Invisalign provider. Her expertise spans straight wire technique, clear aligners, self-ligating brackets, and myofunctional appliances.',
+          li1: 'Adult & surgical orthodontic cases',
+          li2: 'Cleft lip and palate management',
+          li3: 'Impacted canine treatment',
+          li4: 'Micro-implant mechanics'
+        },
+        services: {
+          title: 'Our Services',
+          subtitle: 'Comprehensive orthodontic care tailored to you',
+          s1: { title: 'Invisalign & Clear Aligners', desc: 'Discreet, removable aligners for a comfortable path to your perfect smile. Certified Invisalign provider.' },
+          s2: { title: 'Traditional & Ceramic Braces', desc: 'Metal and ceramic options using straight wire technique for effective, predictable results.' },
+          s3: { title: 'Self-Ligating Brackets', desc: 'Reduced friction, fewer appointments, and potentially shorter treatment time.' },
+          s4: { title: 'Early Intervention', desc: 'Pediatric orthodontics and myofunctional appliances for growing patients.' },
+          s5: { title: 'Complex Cases', desc: 'Impacted canines, cleft lip/palate, mutilated dentition, and surgical orthodontics.' },
+          s6: { title: 'Retainers', desc: 'Custom retention plans to protect your new smile for years to come.' }
+        },
+        videos: {
+          title: 'Meet Dr. Jefna',
+          subtitle: '60-second intros — Dr. Jefna explains treatments in simple terms',
+          fallback: 'Your browser does not support video playback.',
+          v1: '5 things before getting orthodontic treatment',
+          v2: 'About retainers',
+          v3: 'Getting braces — facts'
+        },
+        gallery: {
+          title: 'Smile Gallery',
+          subtitle: 'Drag or swipe to compare before & after',
+          before: 'Before',
+          after: 'After',
+          captions: ['Canine impaction & protrusive maxilla — Patient 1', 'Canine impaction & protrusive maxilla — Patient 2', 'Crowding and cross bite — Patient 1', 'Crowding and cross bite — Patient 2', 'Crowding & palatally placed lateral incisor — Patient 1', 'Crowding & palatally placed lateral incisor — Patient 2', 'Non-extraction crowding — Patient 1', 'Non-extraction crowding — Patient 2', 'Crowding with impacted canines — Patient 1', 'Crowding with impacted canines — Patient 2', 'Misalignment correction — Patient 1', 'Misalignment correction — Patient 2']
+        },
+        achievements: {
+          title: 'Achievements & Expertise',
+          subtitle: 'Recognized excellence in orthodontics',
+          a1: { title: 'University Rank 1 & Gold Medalist', desc: 'Highest marks in MDS Orthodontics, Dr. M.G.R. Medical University' },
+          a2: { title: '500+ Cases in Kuwait', desc: 'Successfully completed orthodontic treatments' },
+          a3: { title: 'Certified Invisalign Provider', desc: 'Expert in clear aligner treatment' },
+          a4: { title: 'MOH Licensed', desc: 'Registrar Orthodontist, Kuwait (License #183415)' }
+        },
+        faq: {
+          title: 'Ask Dr. Jefna',
+          subtitle: 'Common questions — answered personally',
+          online: 'Online — replies typically within hours',
+          from: 'Dr. Jefna',
+          q1: 'When should my child first see an orthodontist?',
+          a1: 'I recommend bringing your child for a check-up by age 7. At this age, we can spot growth issues early and plan preventive care if needed. It doesn\'t mean they\'ll need braces right away — often it\'s just a quick look to put your mind at ease!',
+          q2: 'How long does treatment usually take?',
+          a2: 'It varies — typically 12 to 24 months depending on the case. Some simpler cases finish in 6–9 months. During your first visit, I\'ll give you a clear timeline based on your specific needs.',
+          q3: 'Does Invisalign work for everyone?',
+          a3: 'Invisalign works for many cases, including some complex ones. I\'m a certified provider and have treated 500+ cases. During your consultation, I\'ll honestly tell you if clear aligners are right for you or if braces would give better results.',
+          q4: 'Are braces painful?',
+          a4: 'You might feel some pressure or mild discomfort for a day or two after adjustments — that\'s normal. Most patients say it\'s very manageable. I use gentle techniques and we\'ll make sure you\'re comfortable throughout.',
+          q5: 'Will I need retainers after treatment?',
+          a5: 'Yes! Retainers are essential to keep your new smile in place. I\'ll create a custom retention plan for you. Think of it as the final step — it protects all the work we\'ve done together.',
+          cta: 'Have another question? Message me on WhatsApp'
+        },
+        contact: {
+          title: 'Contact Us',
+          subtitle: 'Book your consultation today',
+          location: { title: '📍 Location', text: '8th Floor, Modern Arab Dental Clinic, Salmiya, Kuwait' },
+          directions: 'Get Directions →',
+          hours: {
+            title: '🕐 Opening Hours',
+            mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat', sun: 'Sun',
+            closed: 'Closed'
+          }
+        },
+        footer: '© 2025 Dr. Jefna Sagir Clinic. All rights reserved.',
+        whatsappAria: 'Chat on WhatsApp'
+      },
+      ar: {
+        skipLink: 'انتقل إلى المحتوى',
+        nav: { about: 'عن الدكتورة', videos: 'فيديوهات تعريفية', services: 'خدماتنا', gallery: 'معرض الابتسامات', faq: 'اسألي الدكتورة جيفنا', contact: 'تواصل معنا' },
+        hero: {
+          badge: 'طبيبة تقويم أسنان مرخصة من وزارة الصحة',
+          tagline: 'أخصائية تقويم أسنان — الكويت',
+          desc: 'أكثر من ١٣ عاماً من الخبرة. أكثر من ٥٠٠ حالة ناجحة. رحلتك نحو ابتسامة واثقة تبدأ من هنا.',
+          cta: 'احجز موعدك'
+        },
+        about: {
+          title: 'تعرفوا على الدكتورة جيفنا صغير',
+          p1: 'طبيبة تقويم أسنان مسجلة في وزارة الصحة بالكويت (الترخيص رقم ١٨٣٤١٥) مع أكثر من ١٣ عاماً من الخبرة في الهند والكويت. الأولى على الدفعة وحاصلة على الميدالية الذهبية من جامعة د. إم جي آر الطبية.',
+          p2: 'أنجزت الدكتورة جيفنا بنجاح أكثر من ٥٠٠ حالة تقويم أسنان في الكويت وهي مزودة بشهادة إنفزلاين. تشمل خبرتها تقنية السلك المستقيم، وواقيات الأسنان الشفافة، والأنظمة ذات الربط الذاتي، والأجهزة الوظيفية.',
+          li1: 'حالات تقويم البالغين والجراحة',
+          li2: 'معالجة الشفة الأرنبية وشق الحنك',
+          li3: 'علاج الناب المنطمر',
+          li4: 'ميكانيكيات الزرعات الدقيقة'
+        },
+        services: {
+          title: 'خدماتنا',
+          subtitle: 'رعاية تقويمية شاملة مصممة خصيصاً لك',
+          s1: { title: 'إنفزلاين والواقيات الشفافة', desc: 'واقيات قابلة للإزالة وغير ظاهرة لطريق مريح نحو ابتسامتك المثالية. مزودة بشهادة إنفزلاين.' },
+          s2: { title: 'التقويم التقليدي والسيراميك', desc: 'خيارات معدنية وسيراميكية باستخدام تقنية السلك المستقيم لنتائج فعالة ومتوقعة.' },
+          s3: { title: 'أنظمة الربط الذاتي', desc: 'احتكاك أقل، مواعيد أقل، ومدة علاج أقصر محتملة.' },
+          s4: { title: 'التدخل المبكر', desc: 'تقويم أسنان الأطفال والأجهزة الوظيفية للمرضى في مرحلة النمو.' },
+          s5: { title: 'الحالات المعقدة', desc: 'الناب المنطمر، الشفة الأرنبية، الأسنان المتهدمة، وتقويم الأسنان الجراحي.' },
+          s6: { title: 'المثبتات', desc: 'خطط احتفاظ مخصصة للحفاظ على ابتسامتك الجديدة لسنوات قادمة.' }
+        },
+        videos: {
+          title: 'تعرفوا على الدكتورة جيفنا',
+          subtitle: 'فيديوهات قصيرة — الدكتورة تشرح العلاجات بأسلوب بسيط',
+          fallback: 'متصفحك لا يدعم تشغيل الفيديو.',
+          v1: '٥ أشياء قبل علاج التقويم',
+          v2: 'عن المثبتات',
+          v3: 'التقويم — حقائق'
+        },
+        gallery: {
+          title: 'معرض الابتسامات',
+          subtitle: 'اسحبي أو مرري للمقارنة بين قبل وبعد',
+          before: 'قبل',
+          after: 'بعد',
+          captions: ['انطمار الناب وبروز الفك العلوي — مريض ١', 'انطمار الناب وبروز الفك العلوي — مريض ٢', 'الازدحام والعضة المعكوسة — مريض ١', 'الازدحام والعضة المعكوسة — مريض ٢', 'الازدحام والثنية الجانبية الحنكية — مريض ١', 'الازدحام والثنية الجانبية الحنكية — مريض ٢', 'حالة ازدحام بدون خلع — مريض ١', 'حالة ازدحام بدون خلع — مريض ٢', 'الازدحام مع الناب المنطمر — مريض ١', 'الازدحام مع الناب المنطمر — مريض ٢', 'تصحيح عدم الانتظام — مريض ١', 'تصحيح عدم الانتظام — مريض ٢']
+        },
+        achievements: {
+          title: 'الإنجازات والخبرة',
+          subtitle: 'تميز معترف به في تقويم الأسنان',
+          a1: { title: 'الأولى على الدفعة والميدالية الذهبية', desc: 'أعلى الدرجات في ماجستير تقويم الأسنان، جامعة د. إم جي آر الطبية' },
+          a2: { title: 'أكثر من ٥٠٠ حالة في الكويت', desc: 'علاجات تقويم مكتملة بنجاح' },
+          a3: { title: 'مزودة بشهادة إنفزلاين', desc: 'خبيرة في علاج الواقيات الشفافة' },
+          a4: { title: 'مرخصة من وزارة الصحة', desc: 'طبيبة تقويم أسنان مسجلة، الكويت (الترخيص رقم ١٨٣٤١٥)' }
+        },
+        faq: {
+          title: 'اسألي الدكتورة جيفنا',
+          subtitle: 'أسئلة شائعة — إجابات شخصية',
+          online: 'متاحة — ترد عادة خلال ساعات',
+          from: 'د. جيفنا',
+          q1: 'متى يجب أن أُحضر طفلي لأول مرة لطبيب التقويم؟',
+          a1: 'أنصح بزيارة أولى عند سن ٧ سنوات. في هذا العمر نستطيع اكتشاف مشاكل النمو مبكراً والتخطيط للوقاية إن لزم. لا يعني ذلك حاجة للتقويم فوراً — غالباً مجرد فحص سريع لطمأنتك!',
+          q2: 'كم تستغرق المعالجة عادةً؟',
+          a2: 'تختلف حسب الحالة — عادةً من ١٢ إلى ٢٤ شهراً. بعض الحالات البسيطة تنتهي خلال ٦–٩ أشهر. في زيارتك الأولى سأعطيك جدولاً واضحاً حسب احتياجك.',
+          q3: 'هل إنفزلاين يناسب الجميع؟',
+          a3: 'إنفزلاين يناسب حالات كثيرة، بما فيها بعض المعقدة. أنا مزودة بالشهادة وعالجت أكثر من ٥٠٠ حالة. في الاستشارة سأقول لك بصراحة إن كانت الواقيات الشفافة مناسبة لك أم أن التقويم التقليدي أفضل.',
+          q4: 'هل التقويم مؤلم؟',
+          a4: 'قد تشعرين بضغط أو انزعاج خفيف ليوم أو يومين بعد الضبط — هذا طبيعي. معظم المرضى يقولون إنه محتمل جداً. أستخدم تقنيات لطيفة ونهتم براحتك طوال العلاج.',
+          q5: 'هل سأحتاج مثبتات بعد العلاج؟',
+          a5: 'نعم! المثبتات ضرورية للحفاظ على ابتسامتك الجديدة. سأضع لك خطة احتفاظ مخصصة. اعتبرها الخطوة الأخيرة — تحمي كل العمل الذي أنجزناه معاً.',
+          cta: 'لديك سؤال آخر؟ راسليني على واتساب'
+        },
+        contact: {
+          title: 'تواصل معنا',
+          subtitle: 'احجز موعد الاستشارة اليوم',
+          location: { title: '📍 الموقع', text: 'الطابق ٨، عيادة مودرن آراب للأسنان، السالمية، الكويت' },
+          directions: 'احصل على الاتجاهات ←',
+          hours: {
+            title: '🕐 أوقات العمل',
+            mon: 'الإثنين', tue: 'الثلاثاء', wed: 'الأربعاء', thu: 'الخميس', fri: 'الجمعة', sat: 'السبت', sun: 'الأحد',
+            closed: 'مغلق'
+          }
+        },
+        footer: '© ٢٠٢٥ عيادة الدكتورة جيفنا صغير. جميع الحقوق محفوظة.',
+        whatsappAria: 'تواصل عبر واتساب'
+      }
+    };
+
+    let lang = localStorage.getItem('lang') || 'en';
+
+    function getNested(obj, path) {
+      return path.split('.').reduce((o, k) => o?.[k], obj);
+    }
+
+    function applyTranslations(l) {
+      document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        const val = getNested(t[l], key);
+        if (val && typeof val === 'string') el.textContent = val;
+      });
+      document.querySelectorAll('[data-i18n-aria]').forEach(el => {
+        const key = el.getAttribute('data-i18n-aria');
+        const val = getNested(t[l], key);
+        if (val) el.setAttribute('aria-label', val);
+      });
+      document.documentElement.lang = l === 'ar' ? 'ar' : 'en';
+      document.documentElement.dir = l === 'ar' ? 'rtl' : 'ltr';
+      document.title = l === 'ar' ? 'الدكتورة جيفنا صغير | أخصائية تقويم أسنان — الكويت' : 'Dr. Jefna Sagir | Orthodontist Kuwait — Invisalign & Braces Specialist';
+      document.getElementById('langEn').classList.toggle('active', l === 'en');
+      document.getElementById('langAr').classList.toggle('active', l === 'ar');
+    }
+
+    function setLang(l) {
+      lang = l;
+      localStorage.setItem('lang', l);
+      applyTranslations(l);
+      if (typeof updateSliderCaptions === 'function') updateSliderCaptions(l);
+    }
+
+    // Smile gallery data - Patient 1 & 2 from each case (before/after folders)
+    const smileCases = [
+      { before: 'assets/smiles/case-of-canine-impaction-and-protru-p1-before.png', after: 'assets/smiles/case-of-canine-impaction-and-protru-p1-after.png' },
+      { before: 'assets/smiles/case-of-canine-impaction-and-protru-p2-before.png', after: 'assets/smiles/case-of-canine-impaction-and-protru-p2-after.png' },
+      { before: 'assets/smiles/case-of-crowding-and-cross-bite-p1-before.png', after: 'assets/smiles/case-of-crowding-and-cross-bite-p1-after.png' },
+      { before: 'assets/smiles/case-of-crowding-and-cross-bite-p2-before.png', after: 'assets/smiles/case-of-crowding-and-cross-bite-p2-after.png' },
+      { before: 'assets/smiles/crowding-and-palatally-placed-later-p1-before.png', after: 'assets/smiles/crowding-and-palatally-placed-later-p1-after.png' },
+      { before: 'assets/smiles/crowding-and-palatally-placed-later-p2-before.png', after: 'assets/smiles/crowding-and-palatally-placed-later-p2-after.png' },
+      { before: 'assets/smiles/crowding-case-treated-non-extractio-p1-before.png', after: 'assets/smiles/crowding-case-treated-non-extractio-p1-after.png' },
+      { before: 'assets/smiles/crowding-case-treated-non-extractio-p2-before.png', after: 'assets/smiles/crowding-case-treated-non-extractio-p2-after.png' },
+      { before: 'assets/smiles/crowding-with-impacted-canines-p1-before.png', after: 'assets/smiles/crowding-with-impacted-canines-p1-after.png' },
+      { before: 'assets/smiles/crowding-with-impacted-canines-p2-before.png', after: 'assets/smiles/crowding-with-impacted-canines-p2-after.png' },
+      { before: 'assets/smiles/misaligned-p1-before.png', after: 'assets/smiles/misaligned-p1-after.png' },
+      { before: 'assets/smiles/misaligned-p2-before.png', after: 'assets/smiles/misaligned-p2-after.png' }
+    ];
+
+    let currentCase = 0;
+
+    function getCaption(idx) {
+      return t[lang].gallery.captions[idx] || '';
+    }
+
+    function updateSliderCaptions(l) {
+      lang = l;
+      const caption = document.getElementById('sliderCaption');
+      if (caption) caption.textContent = getCaption(currentCase);
+    }
+
+    function initSlider() {
+      const wrapper = document.getElementById('sliderWrapper');
+      const beforeEl = document.getElementById('sliderBefore');
+      const afterEl = document.getElementById('sliderAfter');
+      const divider = document.getElementById('sliderDivider');
+      const caption = document.getElementById('sliderCaption');
+      const nav = document.getElementById('sliderNav');
+
+      function setCase(idx) {
+        currentCase = ((idx % smileCases.length) + smileCases.length) % smileCases.length;
+        const c = smileCases[currentCase];
+        beforeEl.style.backgroundImage = `url(${c.before})`;
+        afterEl.style.backgroundImage = `url(${c.after})`;
+        caption.textContent = getCaption(currentCase);
+        updatePosition(50);
+      }
+
+      function updatePosition(percent) {
+        const p = Math.max(0, Math.min(100, percent));
+        beforeEl.style.clipPath = `inset(0 ${p}% 0 0)`;
+        divider.style.left = p + '%';
+      }
+
+      function handleMove(clientX) {
+        const rect = wrapper.getBoundingClientRect();
+        const x = clientX - rect.left;
+        updatePosition((x / rect.width) * 100);
+      }
+
+      wrapper.addEventListener('mousemove', (e) => handleMove(e.clientX));
+      wrapper.addEventListener('mousedown', (e) => {
+        if (e.button !== 0) return;
+        handleMove(e.clientX);
+        const move = (e) => handleMove(e.clientX);
+        const up = () => {
+          document.removeEventListener('mousemove', move);
+          document.removeEventListener('mouseup', up);
+        };
+        document.addEventListener('mousemove', move);
+        document.addEventListener('mouseup', up);
+      });
+
+      wrapper.addEventListener('touchstart', (e) => {
+        const touch = e.touches[0];
+        handleMove(touch.clientX);
+      });
+      wrapper.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        handleMove(e.touches[0].clientX);
+      }, { passive: false });
+
+      smileCases.forEach((_, i) => {
+        const btn = document.createElement('button');
+        btn.textContent = (i + 1).toString();
+        btn.className = i === 0 ? 'active' : '';
+        btn.onclick = () => {
+          setCase(i);
+          nav.querySelectorAll('button').forEach((b, j) => b.classList.toggle('active', j === currentCase));
+        };
+        nav.appendChild(btn);
+      });
+
+      setCase(0);
+    }
+
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.getAttribute('data-theme') === 'dark';
+      html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+      localStorage.setItem('theme', isDark ? 'light' : 'dark');
+    }
+
+    (function initTheme() {
+      const saved = localStorage.getItem('theme');
+      if (saved === 'dark' || saved === 'light') {
+        document.documentElement.setAttribute('data-theme', saved);
+      } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+      }
+    })();
+
+    document.addEventListener('DOMContentLoaded', () => {
+      applyTranslations(lang);
+      renderSocialLinks();
+      initSlider();
+      (function initHeroVideo() {
+        const HERO_VIDEO_ID = 'z9Ox-19NSCE';
+        const thumb = document.getElementById('heroVideoThumb');
+        const embed = document.getElementById('heroVideoEmbed');
+        if (!thumb || !embed) return;
+        const play = () => {
+          if (thumb.classList.contains('playing')) return;
+          thumb.classList.add('playing');
+          embed.classList.add('active');
+          const iframe = document.createElement('iframe');
+          iframe.src = 'https://www.youtube-nocookie.com/embed/' + HERO_VIDEO_ID + '?autoplay=1&rel=0&modestbranding=1';
+          iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+          iframe.allowFullscreen = true;
+          iframe.title = 'Dr. Jefna — Introduction';
+          embed.appendChild(iframe);
+        };
+        thumb.querySelector('.hero-play-btn')?.addEventListener('click', (e) => { e.preventDefault(); play(); });
+        thumb.addEventListener('click', (e) => { if (e.target.closest('.hero-play-btn')) return; play(); });
+        thumb.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); play(); } });
+      })();
+      window.addEventListener('scroll', () => {
+        document.getElementById('header').classList.toggle('scrolled', window.scrollY > 20);
+      });
+    });
+  </script>
 </body>
 </html>

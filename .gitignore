@@ -23,6 +23,13 @@ Thumbs.db
 # Media archive (large files - keep in separate storage if needed)
 media/
 *.zip
+assets/videos/
+
+# Video processing artifacts
+output*.mp4
+silence*.mp4
+drjefnaintro.mp4
+concat_list.txt
 
 # Cursor
 .specstory/
